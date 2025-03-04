@@ -82,6 +82,7 @@ cd ssm-ansible-terraform
 ```
 
 ### 2. Project Structure
+```bash
 ssm-ansible-terraform/
 │── ansible/
 │   ├── inventory/
@@ -117,7 +118,6 @@ ssm-ansible-terraform/
 │── setup_ansible.sh
 │── README.md
 
-```bash
 # This is how the project structure was created
 mkdir -p ansible/inventory ansible/playbooks ansible/roles/webapp/tasks ansible/roles/webapp/templates ansible/roles/webapp/handlers
 mkdir -p terraform/modules/network terraform/modules/ec2 terraform/modules/iam
