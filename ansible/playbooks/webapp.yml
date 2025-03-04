@@ -1,0 +1,9 @@
+# ansible/playbooks/webapp.yml
+
+---
+- name: Deploy web application
+  hosts: webapp
+  become: yes
+  
+  roles:
+    - { role: "ansible/roles/webapp" }

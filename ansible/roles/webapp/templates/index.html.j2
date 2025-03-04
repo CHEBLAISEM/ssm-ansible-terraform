@@ -1,0 +1,48 @@
+# ansible/roles/webapp/templates/index.html.j2
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SSM Ansible Demo By Zsoftly</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .server-info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9e9e9;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AWS SSM Ansible Demo by Zsoftly</h1>
+    <div class="container">
+        <p>This web application was deployed using Ansible through AWS Systems Manager (SSM).</p>
+        <p>No SSH connection was used for deployment.</p>
+        
+        <div class="server-info">
+            <h3>Server Information:</h3>
+            <p><strong>Hostname:</strong> {{ ansible_hostname }}</p>
+            <p><strong>IP Address:</strong> {{ ansible_default_ipv4.address }}</p>
+            <p><strong>Instance ID:</strong> {{ ansible_aws_ssm_instance_id }}</p>
+            <p><strong>Environment:</strong> {{ lookup('env', 'ENVIRONMENT') | default('Development', true) }}</p>
+            <p><strong>Deployment Time:</strong> {{ ansible_date_time.iso8601 }}</p>
+        </div>
+    </div>
+</body>
+</html>

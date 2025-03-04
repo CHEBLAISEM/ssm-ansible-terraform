@@ -1,0 +1,48 @@
+# ansible/roles/webapp/tasks/main.yml
+
+---
+- name: Ensure Python is installed
+  raw: |
+    if [ -f /usr/bin/python3 ]; then echo "Python already installed"; 
+    else apt-get update && apt-get install -y python3; fi
+  changed_when: false
+  become: true
+
+- name: Create Python symlink to make modules work
+  raw: |
+    if [ ! -f /usr/bin/python ] && [ -f /usr/bin/python3 ]; then
+      ln -s /usr/bin/python3 /usr/bin/python
+    fi
+  become: true
+  changed_when: false
+
+- name: Install required packages
+  apt:
+    name:
+      - apache2
+      - git
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Start and enable Apache
+  systemd:
+    name: apache2
+    state: started
+    enabled: yes
+  become: true
+
+- name: Create web content directory
+  file:
+    path: /var/www/html
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Deploy demo web page
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    mode: '0644'
+  become: true
+  notify: restart apache
