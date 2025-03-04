@@ -81,13 +81,48 @@ git clone https://github.com/ZSoftly/ssm-ansible-terraform.git
 cd ssm-ansible-terraform
 ```
 
-### 2. Create Project Structure
+### 2. Project Structure
+ssm-ansible-terraform/
+│── ansible/
+│   ├── inventory/
+│   │   ├── hosts.yml
+│   ├── playbooks/
+│   │   ├── webapp.yml
+│   ├── roles/
+│   │   ├── webapp/
+│   │   │   ├── tasks/
+│   │   │   │   ├── main.yml
+│   │   │   ├── templates/
+│   │   │   │   ├── index.html.j2
+│   │   │   ├── handlers/
+│   │   │   │   ├── main.yml
+│── terraform/
+│   ├── modules/
+│   │   ├── network/
+│   │   │   ├── main.tf
+│   │   │   ├── variables.tf
+│   │   │   ├── outputs.tf
+│   │   ├── ec2/
+│   │   │   ├── main.tf
+│   │   │   ├── variables.tf
+│   │   │   ├── outputs.tf
+│   │   ├── iam/
+│   │   │   ├── main.tf
+│   │   │   ├── variables.tf
+│   │   │   ├── outputs.tf
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   ├── templates.tf
+│── setup_ansible.sh
+│── README.md
+
 ```bash
-# Create project directories and files
+# This is how the project structure was created
 mkdir -p ansible/inventory ansible/playbooks ansible/roles/webapp/tasks ansible/roles/webapp/templates ansible/roles/webapp/handlers
 mkdir -p terraform/modules/network terraform/modules/ec2 terraform/modules/iam
 
-# Create essential files
+# essential files
 touch ansible/inventory/hosts.yml \
       ansible/playbooks/webapp.yml \
       ansible/roles/webapp/tasks/main.yml \
@@ -96,6 +131,7 @@ touch ansible/inventory/hosts.yml \
       terraform/main.tf \
       terraform/variables.tf \
       terraform/outputs.tf \
+      terraform/templates.tf \
       terraform/modules/network/{main.tf,variables.tf,outputs.tf} \
       terraform/modules/ec2/{main.tf,variables.tf,outputs.tf} \
       terraform/modules/iam/{main.tf,variables.tf,outputs.tf}
