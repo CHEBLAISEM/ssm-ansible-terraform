@@ -77,7 +77,7 @@ aws configure
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/ssm-ansible-terraform.git
+git clone https://github.com/ZSoftly/ssm-ansible-terraform.git
 cd ssm-ansible-terraform
 ```
 
