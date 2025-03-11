@@ -164,6 +164,9 @@ terraform apply -auto-approve
 # Return to project root
 cd ..
 
+# Run bash script
+./setup_ansible.sh
+
 # Run Ansible playbook
 ansible-playbook -i ansible/inventory/hosts.yml \
     -e ansible_connection=community.aws.aws_ssm \
