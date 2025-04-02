@@ -2,12 +2,14 @@
 
 # Bastion host
 resource "aws_instance" "bastion" {
-  ami                    = var.bastion_ami
-  instance_type          = var.bastion_instance_type
-  subnet_id              = var.public_subnet_ids[0]
-  vpc_security_group_ids = [var.bastion_security_group_id]
-  key_name               = var.key_name
-  iam_instance_profile   = var.bastion_instance_profile
+  ami                         = var.bastion_ami
+  instance_type               = var.bastion_instance_type
+  subnet_id                   = var.public_subnet_ids[0]
+  associate_public_ip_address = true
+  vpc_security_group_ids      = [var.bastion_security_group_id]
+  key_name                    = var.key_name
+  iam_instance_profile        = var.bastion_instance_profile
+
 
   user_data = <<-EOF
     #!/bin/bash
